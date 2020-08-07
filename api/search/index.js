@@ -32,10 +32,27 @@ module.exports = async function (context, req) {
     if (search !== "") {
         query = {"domain_name": new RegExp('^' + search)}
     }
-    let res = await find(query)
-
+    let records = await find(query)
+    let ret = {
+        "total": records.length, 
+        "page": 1,
+        "perPage": 50,
+        "companies": []
+    }
+    for (i in records) {
+        ret.companies[i] = {
+            "id": records[i]._id.toString(),
+            "position": i,
+            "name": records[i].domain_name,
+            "logo": null,
+            "commits": records.count,
+            "website": null,
+            "github": null
+        }
+    }
+    
     context.res = {
         status: 200,
-        body: JSON.stringify(res)
+        body: JSON.stringify(ret)
     };
 };
