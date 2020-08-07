@@ -24,8 +24,8 @@ function find(query) {
 
 module.exports = async function (context, req) {
     let search = ""
-    if (req.query && req.query.search) {
-        search = req.query.search
+    if (req.query && req.query.query) {
+        search = req.query.query
     }
     context.log('Request search', search);
     let query = {}
