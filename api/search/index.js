@@ -45,7 +45,7 @@ module.exports = async function (context, req) {
             "position": i,
             "name": records[i].domain_name,
             "logo": null,
-            "commits": records.count,
+            "commits": records[i].count,
             "website": null,
             "github": null
         }
