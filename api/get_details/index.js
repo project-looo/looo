@@ -9,6 +9,16 @@ function find(query) {
             assert.equal(null, err);
             let collection = client.db('looc').collection('looc-test-collection');
             let doc = await collection.findOne(query);
+            let mostActiveRepos = []
+            for (i in doc.most_popular_repos) {
+                mostActiveRepos[i] = {
+                    name: doc.most_popular_repos[i].repo_name,
+                    description: null,
+                    commits: doc.most_popular_repos[i].commit_count,
+                    starts: null,
+                    url: null
+                }
+            }
             resolve({
                 "id": doc._id,
                 "position": null,
@@ -18,7 +28,7 @@ function find(query) {
                 "country": null,
                 "website": null,
                 "github": null,
-                "repos": doc.most_popular_repos
+                "repos": mostActiveRepos
             })
         });  
     })
