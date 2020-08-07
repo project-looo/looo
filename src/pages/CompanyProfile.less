@@ -1,0 +1,62 @@
+.company-profile {
+  &-header {
+    display: flex;
+    align-items: center;
+    &-content {
+      margin-left: 16px;
+      width: 100%;
+      flex-shrink: 10;
+      min-width: 0;
+    }
+    .company-logo {
+      width: 96px;
+      height: 96px;
+      flex-shrink: 0;
+    }
+  }
+  &-details-list {
+    margin: 0;
+    --f7-list-item-title-font-size: 18px;
+    --f7-list-item-title-font-weight: bold;
+    .item-media i {
+      color: var(--f7-list-item-header-text-color);
+    }
+  }
+  &-buttons {
+    margin-top: 1em;
+    .button {
+      display: flex;
+      align-items: center;
+      --f7-button-height: 32px;
+      --f7-button-bg-color: var(--f7-list-bg-color);
+    }
+  }
+  &-repos-list {
+    --f7-list-item-after-text-color: var(--f7-text-color);
+    --f7-list-item-text-font-size: 14px;
+    .skeleton-text {
+      pointer-events: none;
+    }
+    .skeleton-text .item-text {
+      display: block;
+    }
+    .item-text {
+      margin-top: 0.5em;
+    }
+    .item-after {
+      i {
+        margin-right: 4px;
+        position: relative;
+        top: -1px;
+      }
+      div {
+        display: flex;
+        align-items: center;
+        line-height: 1;
+        + div {
+          margin-left: 8px;
+        }
+      }
+    }
+  }
+}

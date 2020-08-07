@@ -1,0 +1,49 @@
+:root {
+  --f7-theme-color: #ff9500;
+  --f7-theme-color-rgb: 255, 149, 0;
+  --f7-theme-color-shade: #d67d00;
+  --f7-theme-color-tint: #ffa629;
+}
+.ios .popup {
+  --f7-page-bg-color: #1c1c1e;
+  --f7-list-bg-color: #2c2c2e;
+  --f7-block-strong-bg-color: #2c2c2e;
+}
+.center-content {
+  max-width: 960px;
+  margin: 0 auto;
+}
+.page-header {
+  text-align: center;
+  &-subtitle {
+    margin: 0;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    a {
+      display: flex;
+      align-items: center;
+    }
+    img {
+      height: 24px;
+      margin-left: 4px;
+    }
+  }
+}
+h1.page-title {
+  margin: 0;
+  font-size: var(--f7-navbar-large-title-font-size);
+}
+
+.ios {
+  --f7-navbar-tablet-height: 50px;
+}
+@media (min-width: 960px) {
+  .view-main {
+    .navbar-inner {
+      --f7-navbar-inner-padding-left: calc((100% - 960px) / 2 + 16px);
+      --f7-navbar-inner-padding-right: calc((100% - 960px) / 2 + 16px);
+    }
+  }
+}

@@ -1,0 +1,59 @@
+.company-card {
+  --f7-list-item-title-font-weight: bold;
+  --f7-list-item-title-font-size: 18px;
+  &-position-logo {
+    display: flex;
+    flex-shrink: 0;
+  }
+  &-position {
+    width: 48px;
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--f7-list-item-text-text-color);
+  }
+  .company-logo {
+    width: 48px;
+    height: 48px;
+    margin-left: 4px;
+  }
+  &-commits {
+    display: flex;
+    align-items: center;
+
+    span {
+      font-size: 18px;
+      color: var(--f7-text-color);
+      font-weight: bold;
+    }
+    i {
+      margin-right: 4px;
+    }
+  }
+  &-info {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  &-country {
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    margin-right: 8px;
+    [role='img'] {
+      margin-right: 4px;
+    }
+  }
+  &-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    --f7-button-bg-color: rgba(255, 255, 255, 0.065);
+    .link {
+      margin-top: 6px;
+      display: flex;
+      align-items: center;
+      margin-right: 8px;
+    }
+  }
+}
