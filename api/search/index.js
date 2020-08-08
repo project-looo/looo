@@ -10,12 +10,12 @@ function toArray(cursor) {
     })
 }
 
-function find(query) {
+function find(query, page) {
     return new Promise((resolve, reject) => {
         MongoClient.connect(url, async function(err, client) {
             assert.equal(null, err);
             let collection = client.db('looc').collection('looc-test-collection');
-            let cursor = collection.find(query).sort({'count': -1}).limit(10);
+            let cursor = collection.find(query).sort({'count': -1}).skip(50*(page-1)).limit(50);
             let res = await toArray(cursor)
             resolve(res)
         });  
@@ -24,15 +24,19 @@ function find(query) {
 
 module.exports = async function (context, req) {
     let search = ""
+    let page = 1
     if (req.query && req.query.query) {
         search = req.query.query
+    }
+    if (req.query && req.query.page && req.query.page > 0) {
+        page = req.query.page
     }
     context.log('Request search', search);
     let query = {}
     if (search !== "") {
         query = {"domain_name": new RegExp('^' + search)}
     }
-    let records = await find(query)
+    let records = await find(query, page)
     let ret = {
         "total": records.length, 
         "page": 1,
