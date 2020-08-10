@@ -46,7 +46,7 @@ module.exports = async function (context, req) {
     for (i in records) {
         ret.companies[i] = {
             "id": records[i]._id.toString(),
-            "position": i,
+            "position": records[i].position,
             "name": records[i].domain_name,
             "logo": null,
             "commits": records[i].count,

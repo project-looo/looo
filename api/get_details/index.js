@@ -21,7 +21,7 @@ function find(query) {
             }
             resolve({
                 "id": doc._id,
-                "position": null,
+                "position": doc.position,
                 "name": doc.domain_name,
                 "logo": null,
                 "commits": doc.count,
