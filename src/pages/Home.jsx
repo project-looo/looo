@@ -10,8 +10,8 @@ import {
 } from 'framework7-react';
 import CompanyCard from '../components/CompanyCard';
 
-import { mockCompany } from '../utils/mocks';
-import { search } from '../utils/api';
+import { mockCompany } from '../shared/mocks';
+import { search } from '../shared/api';
 
 import './Home.less';
 

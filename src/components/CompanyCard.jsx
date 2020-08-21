@@ -4,8 +4,8 @@ import { ListItem, Icon } from 'framework7-react';
 import CompanyLogo from './CompanyLogo';
 import './CompanyCard.less';
 
-import formatNumber from '../utils/format-number';
-import emojiFlag from '../utils/emoji-flag';
+import formatNumber from '../shared/format-number';
+import emojiFlag from '../shared/emoji-flag';
 
 const CompanyCard = ({ company, skeleton }) => {
   return (

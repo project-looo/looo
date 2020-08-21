@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import stringToColor from '../utils/string-to-color';
+import stringToColor from '../shared/string-to-color';
 
 import './CompanyLogo.less';
 

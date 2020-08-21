@@ -1,6 +1,6 @@
 import React from 'react';
 import { Icon, ListItem } from 'framework7-react';
-import formatNumber from '../utils/format-number';
+import formatNumber from '../shared/format-number';
 
 const RepoListItem = ({ repo, skeleton }) => {
   return (

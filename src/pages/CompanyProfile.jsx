@@ -17,10 +17,10 @@ import {
 import CompanyLogo from '../components/CompanyLogo';
 import RepoListItem from '../components/RepoListItem';
 
-import formatNumber from '../utils/format-number';
-import emojiFlag from '../utils/emoji-flag';
-import { getCompanyDetails } from '../utils/api';
-import { mockRepo } from '../utils/mocks';
+import formatNumber from '../shared/format-number';
+import emojiFlag from '../shared/emoji-flag';
+import { getCompanyDetails } from '../shared/api';
+import { mockRepo } from '../shared/mocks';
 
 import './CompanyProfile.less';
 
