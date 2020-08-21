@@ -3,7 +3,7 @@ import { Request } from '../js/framework7-custom';
 function search({ query = '', page = 1, perPage = 50 }) {
   return Request.promise
     .json(
-      'https://icy-river-06d0d9a03.azurestaticapps.net/api/search',
+      'https://looo.codersrank.io/api/search',
       { query, page, perPage },
     )
     .then(({ data }) => {
@@ -17,7 +17,7 @@ function search({ query = '', page = 1, perPage = 50 }) {
 function getCompanyDetails(id) {
   return Request.promise
     .json(
-      `https://icy-river-06d0d9a03.azurestaticapps.net/api/get_details`,
+      `https://looo.codersrank.io/get_details`,
       { id },
     )
     .then(({ data }) => {
