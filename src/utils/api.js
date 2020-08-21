@@ -1,9 +1,11 @@
 import { Request } from '../js/framework7-custom';
 
+let apiUrl = process.env.API_URL
+
 function search({ query = '', page = 1, perPage = 50 }) {
   return Request.promise
     .json(
-      'https://icy-river-06d0d9a03.azurestaticapps.net/api/search',
+      apiUrl + '/search',
       { query, page, perPage },
     )
     .then(({ data }) => {
@@ -17,7 +19,7 @@ function search({ query = '', page = 1, perPage = 50 }) {
 function getCompanyDetails(id) {
   return Request.promise
     .json(
-      `https://icy-river-06d0d9a03.azurestaticapps.net/api/get_details`,
+      apiUrl + `/get_details`,
       { id },
     )
     .then(({ data }) => {
