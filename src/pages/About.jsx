@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-closing-tag-location */
 import React from 'react';
 import { Popup, View, Page, Navbar, Link, Icon, Block } from 'framework7-react';
 
@@ -15,66 +16,68 @@ const About = () => {
             <h1 className="page-title">About</h1>
           </Block>
           <Block>
+            <h3>How did we measure the contribution?</h3>
             <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum
-              beatae ut, velit cumque corrupti vitae ad et molestias placeat
-              incidunt rem dolore accusamus, labore numquam cum voluptatum
-              ratione similique mollitia.
+              When we measured the contribution we only considered the commits.
+              We know there are many other ways to contribute to a project not
+              just commits but in this particular case we wanted to focus on the
+              commits.
             </p>
+            <h3>How can we know which company contributed to a repository?</h3>
             <p>
-              Explicabo sint, voluptatibus temporibus aut sed laboriosam magnam
-              optio inventore quis accusamus ad perspiciatis non ducimus beatae
-              asperiores et distinctio veniam reprehenderit commodi vitae ullam.
-              Minus a nam alias corrupti?
+              We relied on the email address of the authors. The second part of
+              the email is usually the company’s domain.
             </p>
+            <h3>How to assign a commit to a company?</h3>
+            {/* prettier-ignore */}
             <p>
-              Ducimus recusandae, cum iste perspiciatis libero numquam suscipit
-              sequi impedit incidunt aut sint et autem ab mollitia modi. Dolore
-              a ut fuga maiores repellendus consequuntur culpa doloribus
-              suscipit possimus voluptates.
+              There are around 2.4B public commits in GitHub (since 2011) and we
+              have to analyze each and every one of them to answer this
+              question. Using the GitHub API to extract that amount of data
+              would be impossible. Thanks to the GitHub Archive Project, all the
+              public GitHub events are stored in a publicly available <a
+                href="https://cloud.google.com/blog/products/gcp/github-on-bigquery-analyze-all-the-open-source-code"
+                className="external"
+                target="_blank"
+                rel="noreferrer"
+              >
+                BigQuery
+              </a> database. Using SQL to extract data makes the process much easier.
             </p>
+            <h3>Clean up the data</h3>
             <p>
-              Vero nobis ut tempore, ad sit dolore praesentium, consequuntur,
-              nulla unde mollitia odio exercitationem assumenda aperiam.
-              Consequuntur eos, debitis alias at magni sequi rem corrupti
-              quisquam voluptates explicabo magnam facere?
+              After we counted the commits for each company. The data needs to
+              be cleaned. We excluded email providers like gmail, hotmail,
+              yandex etc. And there are some cases when commits were made by a
+              bot, we also excluded them.
             </p>
+            <h3>Implementation</h3>
             <p>
-              Atque voluptatum maiores vitae tempore suscipit rerum! Fugiat non
-              cupiditate, vitae quasi neque nostrum, sapiente quod error eius
-              tempore adipisci incidunt dolorem iste laboriosam expedita debitis
-              aut exercitationem dolore corporis.
+              You can find the code in the{' '}
+              <a
+                href="https://github.com/codersrank-org/project-looc/tree/master/etl"
+                className="external"
+                target="_blank"
+                rel="noreferrer"
+              >
+                etl
+              </a>{' '}
+              (Export, Transform, Load) directory.
             </p>
-            <p>
-              Perferendis natus consectetur atque, maxime dignissimos sit
-              tenetur saepe veritatis impedit exercitationem animi facilis unde
-              similique, molestias autem eum nemo dolor iure quas ex itaque
-              dicta, sint quod? Qui, fuga.
-            </p>
-            <p>
-              Non, corrupti? Dolorem voluptate qui blanditiis ratione ipsum non
-              eius laboriosam perspiciatis minus vero. Possimus fugit impedit,
-              eveniet doloremque aut modi ratione architecto tempore dicta, quam
-              culpa iusto maxime necessitatibus!
-            </p>
-            <p>
-              Dolorem iusto consectetur tenetur laborum distinctio architecto
-              rerum obcaecati debitis aperiam aliquam fugiat reprehenderit
-              facere omnis illum sequi velit, repudiandae amet possimus ducimus
-              similique reiciendis odio molestias. Alias, sequi nihil!
-            </p>
-            <p>
-              Quasi dolore debitis quis reiciendis nulla, hic inventore cum quas
-              rem delectus et! Quasi maiores tempore modi! Inventore veritatis
-              odit officia cum eveniet optio cupiditate! Dolore perspiciatis
-              sequi deleniti ratione.
-            </p>
-            <p>
-              Consectetur porro laudantium, ex deleniti omnis molestias quae
-              reiciendis dolorem voluptatibus amet nostrum vel provident dolorum
-              repellendus at deserunt nisi culpa, illum atque. Voluptatem
-              molestiae dolorem provident corporis at commodi.
-            </p>
+            <h3>Roadmap</h3>
+            <ul>
+              <li>Add ETL source code</li>
+              <li>Automate ETL</li>
+              <li>
+                Add the block list of domains to the repo and make it part of
+                the ETL
+              </li>
+              <li>Add user block list and make it part of the ETL</li>
+              <li>
+                Add Organization description. In case, if an organization needs
+                detailed description, change logo or name.{' '}
+              </li>
+            </ul>
           </Block>
         </Page>
       </View>
