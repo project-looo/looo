@@ -63,14 +63,7 @@ module.exports = {
     rules: [
       {
         test: /\.(mjs|js|jsx)$/,
-        include: [
-          resolvePath('src'),
-          resolvePath('node_modules/framework7'),
-          resolvePath('node_modules/framework7-react'),
-          resolvePath('node_modules/template7'),
-          resolvePath('node_modules/dom7'),
-          resolvePath('node_modules/ssr-window'),
-        ],
+        include: [resolvePath('src')],
         use: [
           {
             loader: require.resolve('babel-loader'),
