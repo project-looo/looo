@@ -1,5 +1,5 @@
-# Project Looc
-List Of Opensource Companies
+# Project LOOO
+List Of Opensource Organizations
 
 # The method we used
 ## How did we measure the contribution?
@@ -19,5 +19,6 @@ You can find the code in the `etl` (Export, Transform, Load) directory.
 - Automate ETL
 - Add the block list of domains to the repo and make it part of the ETL
 - Add user block list and make it part of the ETL
+- Add Organization description. In case, if an organization needs detailed description, change logo or name. 
 # How to contribute?
 TODO

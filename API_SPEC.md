@@ -26,7 +26,7 @@ Response
   }
 ```
 
-# Company Details
+# Organization Details
 
 Request in GET query:
 

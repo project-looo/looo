@@ -97,7 +97,7 @@ export default () => {
       infinitePreloader={hasMoreCompanies}
       onInfinite={onInfinite}
     >
-      <Navbar transparent title="Leaderboard of open-source companies">
+      <Navbar transparent title="Leaderboard of open-source organizations">
         <Link href="/about/" slot="right">
           About
         </Link>
@@ -110,7 +110,7 @@ export default () => {
             color="primary"
             size={68}
           />
-          <h1 className="page-title">Leaderboard of Open Source Companies</h1>
+          <h1 className="page-title">Leaderboard of Open Source Organizations</h1>
           <h2 className="page-header-subtitle">
             Scored by
             <a
