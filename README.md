@@ -1,143 +1,23 @@
-# My App
+# Project Looc
+List Of Opensource Companies
 
-## Framework7 CLI Options
+# The method we used
+## How did we measure the contribution?
+When we measured the contribution we only considered the commits. We know there are many other ways to contribute to a project not just commits but in this particular case we wanted to focus on the commits.
+## How can we know which company contributed to a repository?
+We relied on the email address of the authors. The second part of the email is usually the company’s domain.
+## How to assign a commit to a company?
+There are around 2.4B public commits in GitHub (since 2011) and we have to analyze each and every one of them to answer this question. 
+Using the GitHub API to extract that amount of data would be impossible. Thanks to the GitHub Archive Project, all the public GitHub events are stored in a publicly available [BigQuery](https://cloud.google.com/blog/products/gcp/github-on-bigquery-analyze-all-the-open-source-code) database. Using SQL to extract data makes the process much easier. 
+## Clean up the data
+After we counted the commits for each company. The data needs to be cleaned. We excluded email providers like gmail, hotmail, yandex etc. And there are some cases when commits were made by a bot, we also excluded them.
+## Implementation
+You can find the code in the `etl` (Export, Transform, Load) directory.
 
-Framework7 app created with following options:
-
-```
-{
-  "cwd": "/Users/vladimirkharlampidi/GitHub/project-looc",
-  "type": [
-    "pwa"
-  ],
-  "name": "My App",
-  "framework": "react",
-  "template": "blank",
-  "bundler": "webpack",
-  "cssPreProcessor": "less",
-  "theming": {
-    "customColor": false,
-    "color": "#007aff",
-    "darkTheme": false,
-    "iconFonts": true,
-    "fillBars": false
-  },
-  "customBuild": true,
-  "customBuildConfig": {
-    "rtl": false,
-    "darkTheme": true,
-    "lightTheme": true,
-    "themes": [
-      "ios",
-      "md",
-      "aurora"
-    ],
-    "components": [
-      "appbar",
-      "dialog",
-      "popup",
-      "login-screen",
-      "popover",
-      "actions",
-      "sheet",
-      "toast",
-      "preloader",
-      "progressbar",
-      "sortable",
-      "swipeout",
-      "accordion",
-      "contacts-list",
-      "virtual-list",
-      "list-index",
-      "timeline",
-      "tabs",
-      "panel",
-      "card",
-      "chip",
-      "form",
-      "input",
-      "checkbox",
-      "radio",
-      "toggle",
-      "range",
-      "stepper",
-      "smart-select",
-      "grid",
-      "calendar",
-      "picker",
-      "infinite-scroll",
-      "pull-to-refresh",
-      "lazy",
-      "data-table",
-      "fab",
-      "searchbar",
-      "messages",
-      "messagebar",
-      "swiper",
-      "photo-browser",
-      "notification",
-      "autocomplete",
-      "tooltip",
-      "gauge",
-      "skeleton",
-      "menu",
-      "color-picker",
-      "treeview",
-      "text-editor",
-      "elevation",
-      "typography"
-    ]
-  },
-  "webpack": {
-    "developmentSourceMap": true,
-    "productionSourceMap": true,
-    "hashAssets": false,
-    "preserveAssetsPaths": false,
-    "inlineAssets": true
-  }
-}
-```
-
-## NPM Scripts
-
-* 🔥 `start` - run development server
-* 🔧 `dev` - run development server
-* 🔧 `build-dev` - build web app using development mode (faster build without minification and optimization)
-* 🔧 `build-prod` - build web app for production
-
-## WebPack
-
-There is a webpack bundler setup. It compiles and bundles all "front-end" resources. You should work only with files located in `/src` folder. Webpack config located in `build/webpack.config.js`.
-
-Webpack has specific way of handling static assets (CSS files, images, audios). You can learn more about correct way of doing things on [official webpack documentation](https://webpack.js.org/guides/asset-management/).
-
-## PWA
-
-This is a PWA. Don't forget to check what is inside of your `service-worker.js`. It is also recommended that you disable service worker (or enable "Update on reload") in browser dev tools during development.
-## Assets
-
-Assets (icons, splash screens) source images located in `assets-src` folder. To generate your own icons and splash screen images, you will need to replace all assets in this directory with your own images (pay attention to image size and format), and run the following command in the project directory:
-
-```
-framework7 assets
-```
-
-Or launch UI where you will be able to change icons and splash screens:
-
-```
-framework7 assets --ui
-```
-
-## Documentation & Resources
-
-* [Framework7 Core Documentation](https://framework7.io/docs/)
-
-* [Framework7 React Documentation](https://framework7.io/react/)
-
-* [Framework7 Icons Reference](https://framework7.io/icons/)
-* [Community Forum](https://forum.framework7.io)
-
-## Support Framework7
-
-Love Framework7? Support project by donating or pledging on patreon:
-https://patreon.com/vladimirkharlampidi
+# Roadmap
+- Add ETL source code
+- Automate ETL
+- Add the block list of domains to the repo and make it part of the ETL
+- Add user block list and make it part of the ETL
+# How to contribute?
+TODO
