@@ -7,7 +7,7 @@ In the BigQuery a PushEvent looks something like this:
 For us the payload column is important. That contains the emails. In our example it is a454492e42fd9810e577ebee548c7e59bd883bca@live.com.au. GitHub hashed the first part of the email, but this is not important for us now. We need only the domain from the email (live.com.au).
 
 The query to count the commits/domain name looks like this:
-```
+```sql
 ## pre-2015 API
 CREATE TEMP FUNCTION
  json2array(json STRING)
@@ -67,7 +67,7 @@ ORDER BY
 
  After 2015 the format of the payload changed a but and requires a slightly different query:
 
-```
+```sql
 ## post-2015 API
 CREATE TEMP FUNCTION
  json2array(json STRING)
