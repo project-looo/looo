@@ -15,6 +15,7 @@ const CompanyCard = ({ company, skeleton }) => {
         skeleton ? 'skeleton-text skeleton-effect-blink' : ''
       }`}
       link="/company/"
+      mediaItem
       routeProps={{ company }}
     >
       <div slot="media" className="company-card-position-logo">

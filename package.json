@@ -8,8 +8,6 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config ./build/webpack.config.js",
-    "build-dev": "cross-env NODE_ENV=development node ./build/build.js",
-    "build-prod": "cross-env NODE_ENV=production node ./build/build.js",
     "build": "cross-env NODE_ENV=production node ./build/build.js",
     "postinstall": "cpy ./node_modules/framework7-icons/fonts/*.* ./src/fonts/",
     "prettier": "prettier \"**/*.+(js|json|scss|css|less|ts)\"",
@@ -29,9 +27,9 @@
   "dependencies": {
     "cpy-cli": "^3.1.1",
     "dom7": "^3.0.0-alpha.7",
-    "framework7": "^6.0.0-alpha.7",
+    "framework7": "^6.0.0-alpha.8",
     "framework7-icons": "^3.0.1",
-    "framework7-react": "^6.0.0-alpha.7",
+    "framework7-react": "^6.0.0-alpha.8",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

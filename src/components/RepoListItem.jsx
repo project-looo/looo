@@ -6,6 +6,7 @@ const RepoListItem = ({ repo, skeleton }) => {
   return (
     <ListItem
       key={repo.name}
+      mediaItem
       title={repo.name}
       link={repo.url || `https://github.com/${repo.name}`}
       text={repo.description}
