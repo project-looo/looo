@@ -7,6 +7,8 @@ const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+
 const path = require('path');
 
 function resolvePath(dir) {
@@ -61,16 +63,23 @@ module.exports = {
     rules: [
       {
         test: /\.(mjs|js|jsx)$/,
-        use: 'babel-loader',
         include: [
           resolvePath('src'),
           resolvePath('node_modules/framework7'),
-
           resolvePath('node_modules/framework7-react'),
-
           resolvePath('node_modules/template7'),
           resolvePath('node_modules/dom7'),
           resolvePath('node_modules/ssr-window'),
+        ],
+        use: [
+          {
+            loader: require.resolve('babel-loader'),
+            options: {
+              plugins: [
+                env === 'development' && require.resolve('react-refresh/babel'),
+              ].filter(Boolean),
+            },
+          },
         ],
       },
 
@@ -181,8 +190,8 @@ module.exports = {
         ]
       : [
           // Development only plugins
-          new webpack.HotModuleReplacementPlugin(),
           new webpack.NamedModulesPlugin(),
+          new ReactRefreshWebpackPlugin(),
         ]),
     new HtmlWebpackPlugin({
       filename: './index.html',

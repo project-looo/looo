@@ -19,7 +19,7 @@ import CrLogo from '../assets/cr-logo.svg';
 
 let searchTimeout;
 
-export default () => {
+const Home = () => {
   const query = useRef('');
   const loading = useRef(false);
   const page = useRef(1);
@@ -169,3 +169,5 @@ export default () => {
     </Page>
   );
 };
+
+export default Home;

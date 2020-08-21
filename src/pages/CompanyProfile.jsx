@@ -24,7 +24,7 @@ import { mockRepo } from '../utils/mocks';
 
 import './CompanyProfile.less';
 
-const Company = ({ company }) => {
+const CompanyProfile = ({ company }) => {
   const [repos, setRepos] = useState(null);
   const [reposErrored, setReposErrored] = useState(false);
   useEffect(() => {
@@ -137,4 +137,4 @@ const Company = ({ company }) => {
     </Popup>
   );
 };
-export default Company;
+export default CompanyProfile;
