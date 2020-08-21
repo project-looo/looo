@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Page,
   Navbar,
@@ -110,7 +110,9 @@ export default () => {
             color="primary"
             size={68}
           />
-          <h1 className="page-title">Leaderboard of Open Source Organizations</h1>
+          <h1 className="page-title">
+            Leaderboard of Open Source Organizations
+          </h1>
           <h2 className="page-header-subtitle">
             Scored by
             <a
@@ -126,7 +128,7 @@ export default () => {
           className="main-searchbar"
           placeholder="Search company"
           customSearch
-          onSearchbarSearch={(sb, query) => onSearch(query)}
+          onSearchbarSearch={(sb, q) => onSearch(q)}
         />
 
         {companies && companies.length === 0 ? (

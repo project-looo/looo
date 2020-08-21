@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ListItem, Icon } from 'framework7-react';
 
 import CompanyLogo from './CompanyLogo';

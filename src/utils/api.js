@@ -2,10 +2,7 @@ import { Request } from '../js/framework7-custom';
 
 function search({ query = '', page = 1, perPage = 50 }) {
   return Request.promise
-    .json(
-      'https://looo.codersrank.io/api/search',
-      { query, page, perPage },
-    )
+    .json('https://looo.codersrank.io/api/search', { query, page, perPage })
     .then(({ data }) => {
       return data;
     })
@@ -16,10 +13,7 @@ function search({ query = '', page = 1, perPage = 50 }) {
 
 function getCompanyDetails(id) {
   return Request.promise
-    .json(
-      `https://looo.codersrank.io/get_details`,
-      { id },
-    )
+    .json(`https://looo.codersrank.io/get_details`, { id })
     .then(({ data }) => {
       return data;
     })
