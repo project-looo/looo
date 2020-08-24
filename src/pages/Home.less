@@ -6,6 +6,10 @@
     background: var(--f7-list-bg-color);
     margin: 8px 16px;
     border-radius: var(--f7-list-inset-border-radius);
+    @media (max-width: 480px) {
+      margin: 8px 0;
+      border-radius: 0px;
+    }
   }
   .skeleton-text {
     pointer-events: none;

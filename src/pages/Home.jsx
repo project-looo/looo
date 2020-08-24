@@ -8,7 +8,7 @@ import {
   Searchbar,
   Icon,
 } from 'framework7-react';
-import CompanyCard from '../components/CompanyCard';
+import CompanyListItem from '../components/CompanyListItem';
 
 import { mockCompany } from '../shared/mocks';
 import { search } from '../shared/api';
@@ -24,7 +24,7 @@ const Home = () => {
   const loading = useRef(false);
   const page = useRef(1);
   const [companies, setCompanies] = useState(null);
-  const [hasMoreCompanies, setHasMoreCompanies] = useState(true);
+  const hasMoreCompanies = useRef(true);
 
   const setQuery = (value) => {
     query.current = value;
@@ -54,16 +54,15 @@ const Home = () => {
     search({ query: query.current, page: newPage || page.current, perPage: 50 })
       .then((data) => {
         const companiesResult = data.companies || [];
+        if (companiesResult.length < 50) {
+          hasMoreCompanies.current = false;
+        } else {
+          hasMoreCompanies.current = true;
+        }
         if (!newPage) {
           setCompanies(companiesResult);
         } else {
           addCompanies(companiesResult);
-        }
-
-        if (companiesResult.length < 50) {
-          setHasMoreCompanies(false);
-        } else {
-          setHasMoreCompanies(true);
         }
 
         setLoading(false);
@@ -74,6 +73,7 @@ const Home = () => {
   };
 
   const onInfinite = () => {
+    if (!hasMoreCompanies.current) return;
     load(page.current + 1);
   };
 
@@ -94,7 +94,7 @@ const Home = () => {
       name="home"
       className="search-page"
       infinite
-      infinitePreloader={hasMoreCompanies}
+      infinitePreloader={hasMoreCompanies.current}
       onInfinite={onInfinite}
     >
       <Navbar transparent title="Leaderboard of open-source organizations">
@@ -119,6 +119,7 @@ const Home = () => {
               href="https://codersrank.io"
               target="_blank"
               rel="noreferrer noopener"
+              className="external"
             >
               <img alt="CodersRank" src={CrLogo} />
             </a>
@@ -147,7 +148,7 @@ const Home = () => {
             <ul>
               {companies === null &&
                 Array.from({ length: 50 }).map((_, index) => (
-                  <CompanyCard
+                  <CompanyListItem
                     key={index}
                     company={{ ...mockCompany }}
                     skeleton
@@ -156,7 +157,7 @@ const Home = () => {
               {companies &&
                 companies.length > 0 &&
                 companies.map((company, index) => (
-                  <CompanyCard
+                  <CompanyListItem
                     key={index}
                     company={company}
                     skeleton={company.skeleton}
