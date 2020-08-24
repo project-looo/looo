@@ -1,20 +1,36 @@
-.company-card {
+.company-list-item {
   --f7-list-item-title-font-weight: bold;
   --f7-list-item-title-font-size: 18px;
+  @media (max-width: 480px) {
+    --f7-list-item-title-font-size: 16px;
+  }
   &-position-logo {
     display: flex;
     flex-shrink: 0;
   }
   &-position {
-    width: 72px;
+    width: 48px;
     font-size: 16px;
     font-weight: 600;
     color: var(--f7-list-item-text-text-color);
+    &-sm {
+      font-size: 14px;
+    }
+    &-xs {
+      font-size: 12px;
+    }
+    @media (max-width: 480px) {
+      font-size: 12px;
+    }
   }
   .company-logo {
     width: 48px;
     height: 48px;
     margin-left: 4px;
+    @media (max-width: 480px) {
+      width: 40px;
+      height: 40px;
+    }
   }
   &-commits {
     display: flex;
@@ -24,6 +40,9 @@
       font-size: 18px;
       color: var(--f7-text-color);
       font-weight: bold;
+      @media (max-width: 480px) {
+        font-size: 14px;
+      }
     }
     i {
       margin-right: 4px;
