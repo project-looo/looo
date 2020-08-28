@@ -25,3 +25,6 @@ You can find the code in the [etl](https://github.com/codersrank-org/project-loo
 - Add Organization description. In case, if an organization needs detailed description, change logo or name. 
 # How to contribute?
 TODO
+# Special thanks to
+- Microsoft for the infrastructure ([Static Web Apps](https://docs.microsoft.com/en-us/azure/static-web-apps/overview) and [App Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview))
+- [Vladimir Kharlampidi](https://github.com/nolimits4web), author of Framework7, for the frontend
