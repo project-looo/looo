@@ -26,7 +26,9 @@ You can find the code in the [etl](https://github.com/codersrank-org/project-loo
 - Add user block list and make it part of the ETL
 - Add Organization description. In case, if an organization needs detailed description, change logo or name. 
 # How to contribute?
-TODO
+This project is far from complete. Still there are number of things to improve. We expect the community to help to keep clean the list.
+- Detect bots: there are many commits made by bots which need to be removed. These usernames should be added to https://github.com/project-looo/looo/blob/master/etl/skip-usernames.txt
+- Exclude domains: some domains doesn't belong to any organization, e.g. localhost, gmail.com, etc. Add these to https://github.com/project-looo/looo/blob/master/etl/skip-domains.txt
 # Special thanks to
 - Microsoft for the infrastructure ([Static Web Apps](https://docs.microsoft.com/en-us/azure/static-web-apps/overview) and [App Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview))
 - [Vladimir Kharlampidi](https://github.com/nolimits4web), author of Framework7, for the frontend
