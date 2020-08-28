@@ -1,6 +1,9 @@
-# Project LOOO
-List Of Opensource Organizations
-
+# Project LOOO (List Of Opensource Organizations)
+We have created a list of the top 100K open source organizations.
+It is Inspired by EPAM’s Open Source Company Index but there are some differences: 
+- It includes all kind of organizations not just companies
+- The list contains the top 100K organizations
+- Based on number of commits not number of contributors.
 # The method we used
 ## How did we measure the contribution?
 When we measured the contribution we only considered the commits on GitHub. There are many other ways to contribute to a project not just commits but in this particular case we wanted to focus on the commits.
