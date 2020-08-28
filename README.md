@@ -12,7 +12,7 @@ Using the GitHub API to extract that amount of data would be impossible. Thanks 
 ## Clean up the data
 After we counted the commits for each company. The data needs to be cleaned. We excluded email providers like gmail, hotmail, yandex etc. And there are some cases when commits were made by a bot, we also excluded them.
 ## Implementation
-You can find the code in the `etl` (Export, Transform, Load) directory.
+You can find the code in the [etl](https://github.com/codersrank-org/project-looc/tree/master/etl) (Export, Transform, Load) directory.
 
 # Roadmap
 - Add ETL source code
