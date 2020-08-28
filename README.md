@@ -30,3 +30,4 @@ TODO
 # Special thanks to
 - Microsoft for the infrastructure ([Static Web Apps](https://docs.microsoft.com/en-us/azure/static-web-apps/overview) and [App Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview))
 - [Vladimir Kharlampidi](https://github.com/nolimits4web), author of Framework7, for the frontend
+- [Zsolt Rabai](https://github.com/rabxly), data scientist, for creating the ETL
