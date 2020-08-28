@@ -1,7 +1,7 @@
 # Project LOOO (List Of Opensource Organizations)
-[https://looo.codersrank.io/](https://looo.codersrank.io/)
+We have created a list of the top 100K open source organizations: [https://looo.codersrank.io/](https://looo.codersrank.io/)
 
-We have created a list of the top 100K open source organizations.
+This project is built by the community to say thank you for the organzations for their opensource contribution. 
 It is Inspired by EPAM’s Open Source Company Index but there are some differences: 
 - It includes all kind of organizations not just companies
 - The list contains the top 100K organizations
