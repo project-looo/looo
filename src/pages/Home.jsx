@@ -111,7 +111,7 @@ const Home = () => {
             size={68}
           />
           <h1 className="page-title">
-            Leaderboard of Open Source Organizations
+            Leaderboard of Open Source Organizations!
           </h1>
           <h2 className="page-header-subtitle">
             Scored by
