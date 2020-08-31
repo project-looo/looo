@@ -1,11 +1,8 @@
 # Project LOOO (List Of Opensource Organizations)
 We have created a list of the top 100K open source organizations: [https://looo.codersrank.io/](https://looo.codersrank.io/)
 
-This project is built by the community to say thank you for the organzations for their opensource contribution. 
-It is Inspired by EPAM’s Open Source Company Index but there are some differences: 
-- It includes all kind of organizations not just companies
-- The list contains the top 100K organizations
-- Based on number of commits not number of contributors.
+This project is built by the community to say thank you for the organizations for their opensource contribution. 
+The list contains the top 100K organizations, based on number of commits.
 # The method we used
 ## How did we measure the contribution?
 When we measured the contribution we only considered the commits on GitHub. There are many other ways to contribute to a project not just commits but in this particular case we wanted to focus on the commits.
