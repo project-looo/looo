@@ -2,7 +2,7 @@
 We have created a list of the top 100K open source organizations: [https://looo.codersrank.io/](https://looo.codersrank.io/)
 
 This project is built by the community to say thank you for the organizations for their opensource contribution. 
-The list contains the top 100K organizations, based on number of commits.
+The list contains the top 100K organizations, based on the number of commits.
 # The method we used
 ## How did we measure the contribution?
 When we measured the contribution we only considered the commits on GitHub. There are many other ways to contribute to a project not just commits but in this particular case we wanted to focus on the commits.
