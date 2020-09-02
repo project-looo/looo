@@ -10,59 +10,85 @@ The query to count the commits/domain name looks like this:
 ```sql
 ## pre-2015 API
 CREATE TEMP FUNCTION
- json2array(json STRING)
- RETURNS ARRAY<STRING>
- LANGUAGE js AS """
-         return JSON.parse(json).map(x=>JSON.stringify(x));
-       """;
+  json2array(json STRING)
+  RETURNS ARRAY<STRING>
+  LANGUAGE js AS """
+          return JSON.parse(json).map(x=>JSON.stringify(x));
+        """;
 WITH
- export_domains AS(
- SELECT
-   DATE_TRUNC(DATE(created_at), month) AS month,
-   emails,
-   ARRAY(
-   SELECT
-     REGEXP_EXTRACT(x, "@(.*)")
-   FROM
-     UNNEST(emails) x
-   WHERE
-     REGEXP_EXTRACT(x, "@(.*)") IS NOT NULL) AS domains
- FROM (
-   SELECT
-     * EXCEPT(array_commits),
-     ARRAY(
-     SELECT
-       JSON_EXTRACT_SCALAR(x,
-         '$[1]')
-     FROM
-       UNNEST(array_commits) x) emails
-   FROM (
-     SELECT
-       created_at,
-       json2array(JSON_EXTRACT(payload,
-           '$.shas')) array_commits
-     FROM
-       `githubarchive.day.20130101`
-     WHERE
-       type='PushEvent' )))
+  export_commit_data AS(
+  SELECT
+    event_id,
+    event_type,
+    created_at,
+    repo_name,
+    repo_id,
+    repo_url,
+    actor_name,
+    push_id,
+    commit_data
+  FROM (
+    SELECT
+      *,
+      ARRAY(
+      SELECT
+        JSON_EXTRACT(x,
+          '$')
+      FROM
+        UNNEST(array_commits) x) AS commit_data
+    FROM (
+      SELECT
+        id AS event_id,
+        type AS event_type,
+        created_at,
+        repo.name AS repo_name,
+        repo.id AS repo_id,
+        repo.url AS repo_url,
+        actor.login AS actor_name,
+        JSON_EXTRACT_SCALAR(payload,
+          "$.push_id") AS push_id,
+        json2array(JSON_EXTRACT(payload,
+            '$.shas')) AS array_commits
+      FROM
+        `githubarchive.day.20140201`
+      WHERE
+        type='PushEvent'
+        AND JSON_EXTRACT(payload,
+          "$.shas") IS NOT NULL )))
 SELECT
- month,
- flattened_domains AS email_domain,
- COUNT(flattened_domains) AS domain_count
+  event_id,
+  event_type,
+  created_at,
+  repo_id,
+  repo_name,
+  repo_url,
+  REGEXP_REPLACE(repo_url, "https://github.com/|https://api.github.dev/repos/", "") AS repo_fullname,
+  push_id,
+  actor_name,
+  commit_data,
+  JSON_EXTRACT_SCALAR(commit_data,
+    "$[0]") AS commit_sha,
+  JSON_EXTRACT_SCALAR(commit_data,
+    "$[1]") AS email,
+  REGEXP_EXTRACT(JSON_EXTRACT_SCALAR(commit_data,
+      "$[1]"), "@(.*)") AS email_domain,
+  REGEXP_REPLACE(LOWER(TRIM(REGEXP_EXTRACT(JSON_EXTRACT_SCALAR(commit_data,
+      "$[1]"), "@(.*)"))), "[^a-zA-Z0-9\\.]+", "") as email_domain_cleaned
 FROM (
- SELECT
-   month,
-   flattened_domains
- FROM
-   export_domains
- CROSS JOIN
-   UNNEST(export_domains.domains) AS flattened_domains )
-GROUP BY
- month,
- email_domain
-ORDER BY
- month,
- domain_count DESC
+  SELECT
+    event_id,
+    event_type,
+    created_at,
+    repo_name,
+    repo_id,
+    repo_url,
+    push_id,
+    actor_name,
+    commit_data,
+  FROM
+    export_commit_data
+  CROSS JOIN
+    UNNEST(export_commit_data.commit_data) AS commit_data )
  ```
 
  After 2015 the format of the payload changed a but and requires a slightly different query:
@@ -70,61 +96,91 @@ ORDER BY
 ```sql
 ## post-2015 API
 CREATE TEMP FUNCTION
- json2array(json STRING)
- RETURNS ARRAY<STRING>
- LANGUAGE js AS """
-         return JSON.parse(json).map(x=>JSON.stringify(x));
-       """;
+  json2array(json STRING)
+  RETURNS ARRAY<STRING>
+  LANGUAGE js AS """
+          return JSON.parse(json).map(x=>JSON.stringify(x));
+        """;
 WITH
- export_domains AS(
- SELECT
-   DATE_TRUNC(DATE(created_at), month) AS month,
-   emails,
-   ARRAY(
-   SELECT
-     REGEXP_EXTRACT(x, "@(.*)")
-   FROM
-     UNNEST(emails) x
-   WHERE
-     REGEXP_EXTRACT(x, "@(.*)") IS NOT NULL) AS domains
- FROM (
-   SELECT
-     * EXCEPT(array_commits),
-     ARRAY(
-     SELECT
-       JSON_EXTRACT_SCALAR(x,
-         '$.author.email')
-     FROM
-       UNNEST(array_commits) x) emails
-   FROM (
-     SELECT
-       created_at,
-       json2array(JSON_EXTRACT(payload,
-           '$.commits')) array_commits
-     FROM
-       `githubarchive.day.20150102`
-     WHERE
-       type='PushEvent' )))
+  export_commit_data AS(
+  SELECT
+    event_id,
+    event_type,
+    created_at,
+    repo_name,
+    repo_id,
+    repo_url,
+    push_id,
+    actor_name,
+    commit_data
+  FROM (
+    SELECT
+      *,
+      ARRAY(
+      SELECT
+        JSON_EXTRACT(x,
+          '$')
+      FROM
+        UNNEST(array_commits) x) AS commit_data
+    FROM (
+      SELECT
+        id AS event_id,
+        type AS event_type,
+        created_at,
+        repo.name AS repo_name,
+        repo.id AS repo_id,
+        repo.url AS repo_url,
+        actor.login AS actor_name,
+        JSON_EXTRACT_SCALAR(payload,
+          "$.push_id") AS push_id,
+        json2array(JSON_EXTRACT(payload,
+            '$.commits')) array_commits
+      FROM
+        `githubarchive.day.20200112`
+      WHERE
+        type='PushEvent' )))
+        
 SELECT
- month,
- flattened_domains AS email_domain,
- COUNT(flattened_domains) AS domain_count
+  event_id,
+  event_type,
+  created_at,
+  repo_id,
+  repo_name,
+  repo_url,
+  repo_name AS repo_fullname,
+  push_id,
+  actor_name,
+  commit_data,
+  JSON_EXTRACT_SCALAR(commit_data,
+    "$.sha") AS commit_sha,
+  JSON_EXTRACT_SCALAR(commit_data,
+    "$.author.email") AS email,
+  REGEXP_EXTRACT(JSON_EXTRACT_SCALAR(commit_data,
+      "$.author.email"), "@(.*)") AS email_domain,
+  REGEXP_REPLACE(LOWER(TRIM(REGEXP_EXTRACT(JSON_EXTRACT_SCALAR(commit_data,
+            "$.author.email"), "@(.*)"))), "[^a-zA-Z0-9\\.]+", "") AS email_domain_cleaned
 FROM (
- SELECT
-   month,
-   flattened_domains
- FROM
-   export_domains
- CROSS JOIN
-   UNNEST(export_domains.domains) AS flattened_domains )
-GROUP BY
- month,
- email_domain
-ORDER BY
- month,
- domain_count DESC
+  SELECT
+    event_id,
+    event_type,
+    created_at,
+    repo_name,
+    repo_id,
+    repo_url,
+    repo_name AS repo_fullname,
+    push_id,
+    actor_name,
+    commit_data,
+  FROM
+    export_commit_data
+  CROSS JOIN
+    UNNEST(export_commit_data.commit_data) AS commit_data )
 ```
-The result looks like this:
+
+#Step 2
+Count the number of commits per domain.
+
+The final result looks like this:
 | month      | email_domain             | domain_count |
 |------------|--------------------------|--------------|
 | 2015-01-01 | gmail.com                |       131357 |
