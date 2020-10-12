@@ -42,3 +42,6 @@ Thumbs.db
 
 # Production build
 www/
+
+# Data saved to local drive
+etl/data/*
