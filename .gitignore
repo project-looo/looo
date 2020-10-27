@@ -42,3 +42,10 @@ Thumbs.db
 
 # Production build
 www/
+
+# Data saved to local drive
+etl/data/*
+
+# __pycache__
+
+etl/src/__pycache__/*
